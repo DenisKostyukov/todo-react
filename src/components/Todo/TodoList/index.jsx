@@ -9,10 +9,11 @@ function TodoList (props) {
         isCompleted: item.id === id ? !item.isCompleted : item.isCompleted,
       }))
     );
+    
   };
   const deleteTask = task => {
     setTodo(
-      todo.filter(item => item != task
+      todo.filter(item => item !== task
       )
     );
   };

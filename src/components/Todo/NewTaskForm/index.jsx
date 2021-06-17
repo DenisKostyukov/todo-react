@@ -1,22 +1,18 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import InputForm from './InputForm';
 import { NEW_TASK_SCHEMA } from '../../../utils/validationSchemas';
+
+import style from './NewTaskForm.module.sass';
 const initialValues = {
   task: '',
 };
 
-function NewTaskForm ({ todo, setTodo }) {
+function NewTaskForm ({ addTask }) {
   return (
     <Formik
       onSubmit={(values, actions) => {
-        setTodo(
-          todo.push({
-            id: todo.length + 1,
-            task: values.task,
-            isCompleted: false,
-          })
-        );
-        console.log(values.task);
+        addTask(values.task);
         actions.setSubmitting(false);
         actions.resetForm();
       }}
@@ -25,10 +21,10 @@ function NewTaskForm ({ todo, setTodo }) {
     >
       {formikProps => {
         return (
-          <Form>
-            <Field type='text' name='task' placeholder='Your task' />
-            <ErrorMessage name='task' />
-            <Field type='submit' value='submit' />
+          <Form className={style.form}>
+            <Field component={InputForm} type='text' name='task' placeholder='Your task' />
+            <ErrorMessage name='task' className={style.error} component="span"/>
+            <Field className={style.buttonSubmit} type='submit' value='SUBMIT' />
           </Form>
         );
       }}
