@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TodoItem from './TodoItem';
-function TodoList (props) {
-  const { todo, setTodo } = props;
+import { TodoContext } from '../../../context';
+function TodoList () {
+  const { todo, setTodo } = useContext(TodoContext);
   const changeIsCompleted = id => {
     setTodo(
       todo.map(item => ({
