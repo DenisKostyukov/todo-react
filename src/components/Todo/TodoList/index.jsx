@@ -14,7 +14,7 @@ function TodoList (props) {
     setTodo(todo.filter(item => item !== task));
   };
   const getTodo = () => {
-    if(todo){
+    if (todo) {
       return todo.map(todoItem => {
         return (
           <TodoItem
@@ -26,7 +26,6 @@ function TodoList (props) {
         );
       });
     }
-    
   };
   return (
     <>

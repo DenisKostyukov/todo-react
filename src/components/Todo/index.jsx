@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import NewTaskForm from './NewTaskForm';
 import TodoList from './TodoList';
+import { v4 as uuidv4 } from 'uuid';
 import style from './Todo.module.sass';
 const todosArray = [
   {
@@ -28,11 +29,7 @@ function Todo () {
   const [todo, setTodo] = useState(JSON.parse(localStorage.getItem("todo list")));
   const addTask = task => {
     const newTodoArray = [...todo];
-    const lastId = newTodoArray.reduce(
-      (acc, cur) => (cur.id > acc ? cur.id : acc),
-      0
-    );
-    newTodoArray.push({ task, id: lastId + 1, isCompleted: false });
+    newTodoArray.push({ task, id: uuidv4(), isCompleted: false });
     setTodo(newTodoArray);
   };
   useEffect(()=>{
