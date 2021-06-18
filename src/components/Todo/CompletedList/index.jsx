@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
-import { TodoContext } from '../../../context';
+import React from 'react';
+
 function CompletedList () {
-  const {todo} = useContext(TodoContext)
+
   return (
     <>
       {

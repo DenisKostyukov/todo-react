@@ -14,20 +14,24 @@ function TodoList () {
   const deleteTask = task => {
     setTodo(todo.filter(item => item !== task));
   };
-  const getTodo = todo.map(todoItem => {
-    return (
-      <TodoItem
-        key={todoItem.id}
-        todoItem={todoItem}
-        changeIsCompleted={changeIsCompleted}
-        deleteTask={deleteTask}
-      />
-    );
-  });
+  const getTodo = () => {
+    if (todo) {
+      return todo.map(todoItem => {
+        return (
+          <TodoItem
+            key={todoItem.id}
+            todoItem={todoItem}
+            changeIsCompleted={changeIsCompleted}
+            deleteTask={deleteTask}
+          />
+        );
+      });
+    } else return;
+  };
 
   return (
     <>
-      <ul>{getTodo}</ul>
+      <ul>{getTodo()}</ul>
     </>
   );
 }
