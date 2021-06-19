@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import TodoItem from './TodoItem';
 import { TodoContext } from '../../../context';
+import style from './TodoList.module.sass'
 function TodoList () {
   const { todo, setTodo } = useContext(TodoContext);
   const changeIsCompleted = id => {
@@ -15,7 +16,7 @@ function TodoList () {
     setTodo(todo.filter(item => item !== task));
   };
   const getTodo = () => {
-    if (todo) {
+    if (todo.length>0) {
       return todo.map(todoItem => {
         return (
           <TodoItem
@@ -26,7 +27,7 @@ function TodoList () {
           />
         );
       });
-    } else return;
+    } else return <div className={style.empty}>Здесь пока пусто</div>
   };
 
   return (
