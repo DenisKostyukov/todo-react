@@ -6,6 +6,8 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { withStyles } from '@material-ui/core/styles';
 import style from './TodoItem.module.sass';
+import { useDispatch } from 'react-redux';
+import { deleteItem, updateItem } from '../../../../redux/actions';
 const CustomCheckbox = withStyles({
   root: {
     color: "#d1f443",
@@ -15,7 +17,8 @@ const CustomCheckbox = withStyles({
   },
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
-function TodoItem ({ todoItem, changeIsCompleted, deleteTask }) {
+function TodoItem ({ todoItem}) {
+  const dispatch = useDispatch();
   return (
     <>
       <li className={style.todoItem}>
@@ -23,11 +26,11 @@ function TodoItem ({ todoItem, changeIsCompleted, deleteTask }) {
           icon={<CheckCircleOutlineIcon />}
           checkedIcon={<CheckCircleIcon />}
           checked={todoItem.isCompleted}
-          onChange={() => changeIsCompleted(todoItem.id)}
+          onChange={() => dispatch(updateItem(todoItem.id))}
           name='checkbox'
         />
         {todoItem.task}
-        <span onClick={() => deleteTask(todoItem)}>
+        <span onClick={() => dispatch(deleteItem(todoItem))}>
           <IconButton>
             <DeleteIcon />
           </IconButton>

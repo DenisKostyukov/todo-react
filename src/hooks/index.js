@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-export function useTodo () {
-  const [todo, setTodo] = useState(JSON.parse(localStorage.getItem('todo list')) || []);
+export function useTodo (todo) {
   useEffect(() => {
-    localStorage.setItem('todo list', JSON.stringify(todo ? todo : []));
+    localStorage.setItem('todo list', JSON.stringify(todo));
   }, [todo]);
-  return { todo, setTodo };
 }
